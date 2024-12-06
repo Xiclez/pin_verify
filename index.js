@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config(); // Load environment variables from .env
+require('dotenv').config();
 
 const app = express();
 
@@ -22,8 +22,5 @@ app.post('/verify-pin', (req, res) => {
   return res.status(403).json({ success: false, message: "Invalid PIN" });
 });
 
-// Start server
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+// Export the app for Vercel
+module.exports = app;
