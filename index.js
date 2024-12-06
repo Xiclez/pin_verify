@@ -22,5 +22,13 @@ app.post('/verify-pin', (req, res) => {
   return res.status(403).json({ success: false, message: "Invalid PIN" });
 });
 
+// Start server only if running locally
+if (process.env.NODE_ENV !== 'production') {
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
+
 // Export the app for Vercel
 module.exports = app;
